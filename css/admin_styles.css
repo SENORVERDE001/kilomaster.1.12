@@ -1,0 +1,1217 @@
+/* NOTA: Fondo claro con imagen ajustada para no ser tapada por el sidebar */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(116, 45, 49, 0.9);
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: left 280px center;
+    background-attachment: fixed;
+    background-size: contain;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: #3c2526;
+    overflow-x: hidden;
+}
+
+/* NOTA: Contenedor principal ajustado para ocupar toda la altura */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.content {
+    margin-left: 280px;
+    padding: 1.5rem;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: auto;
+}
+
+/* NOTA: Títulos y etiquetas con estilo limpio */
+h1, h2, h3, .form-group label, .filter-form label {
+    color: #0f0f0f;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+}
+
+/* NOTA: Tabla con fondo oscuro y sombra sutil */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    color: #fed27a;
+    border: 1px solid #d9d9d9;
+}
+
+/* NOTA: Celdas con bordes discretos y mayor espacio */
+th, td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
+}
+
+/* NOTA: Encabezados con #742d31 sólido */
+th {
+    background: #742d31;
+    color: #ffffff;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+/* NOTA: Hover en filas con #fed27a sutil */
+tr:hover {
+    background: rgba(254, 210, 122, 0.2);
+    transition: background 0.3s ease;
+}
+
+/* NOTA: Contenedor de formularios con estilo igual al modal de Editar Conductor */
+.form-container {
+    background: #fed27a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #742d31;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease-out;
+    color: #3c2526;
+}
+
+/* NOTA: Animación de entrada moderna */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* NOTA: Espaciado formal en grupos de formulario */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+/* NOTA: Inputs y selects con borde #742d31 */
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #742d31;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    background: #ffffff;
+    color: #3c2526;
+}
+
+/* NOTA: Efecto focus con #fed27a discreto */
+.form-group input:focus, .form-group select:focus {
+    border-color: #fed27a;
+    box-shadow: 0 0 4px rgba(254, 210, 122, 0.3);
+    outline: none;
+}
+
+/* NOTA: Botón de guardar con #fed27a y animación formal */
+.btn-save, button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    background: #742d31;
+    color: #fed27a;
+    border: none;
+    border-radius: 6px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* NOTA: Hover con animación moderna */
+.btn-save:hover, button[type="submit"]:hover {
+    background: #e8c56b;
+    transform: translateY(-2px);
+}
+
+/* NOTA: Botones secundarios con #742d31 */
+button[type="button"], .filter-form button {
+    padding: 0.6rem;
+    background: #742d31;
+    color: #fed27a;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* NOTA: Hover con animación moderna */
+button[type="button"]:hover, .filter-form button:hover {
+    background: #3c2526;
+    transform: translateY(-2px);
+}
+
+/* NOTA: Menú desplegable con estilo similar a la tabla de reportes */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* NOTA: Botón del menú con #742d31 */
+.dropdown-btn {
+    padding: 0.6rem 1rem;
+    background: #742d31;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* NOTA: Hover con efecto sutil */
+.dropdown-btn:hover {
+    background: #3c2526;
+    transform: translateY(-2px);
+}
+
+/* NOTA: Menú desplegable con fondo oscuro y estilo de tabla de reportes */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #1a1a1a;
+    min-width: 140px;
+    max-width: 300px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    right: 0;
+    padding: 10px;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* NOTA: Cuadrícula de dos columnas para menús específicos */
+.dropdown-menu.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+/* NOTA: Botones dentro del menú desplegable */
+.dropdown-menu button {
+    width: 100%;
+    padding: 0.6rem;
+    background: #742d31;
+    color: #fed27a;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.dropdown-menu button:hover {
+    background: #fed27a;
+    color: #742d31;
+    transform: scale(1.05);
+}
+
+/* NOTA: Animación de entrada para menú */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* NOTA: Modal con fondo gris oscuro */
+.modal, #editModal, #editConductorModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+}
+
+/* NOTA: Modal específico para reportes, centrado en la pantalla */
+#reportModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NOTA: Contenido del modal con fondo #fed27a y borde #742d31 */
+.modal-content {
+    background: #fed27a;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 1200px;
+    min-width: 600px;
+    height: 700px;
+    min-height: 400px;
+    max-height: 95vh;
+    overflow: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #742d31;
+    color: #3c2526;
+    animation: fadeIn 0.3s ease-out;
+    position: relative;
+    resize: both;
+    box-sizing: border-box;
+}
+
+/* NOTA: Centrado específico para el modal de edición */
+#editModal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    min-width: 300px;
+    width: 90%;
+    height: auto;
+    min-height: 400px;
+    max-height: 90vh;
+    resize: none;
+}
+
+/* NOTA: Centrado específico para el modal de editar conductor */
+#editConductorModal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    min-width: 300px;
+    width: 90%;
+    height: auto;
+    min-height: 400px;
+    max-height: 90vh;
+    resize: none;
+}
+
+/* NOTA: Modal específico para reportes, ocupando 70% del ancho y alto, centrado */
+#reportModal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    width: 90vw;
+    max-height: 90vh;
+    height: 90vh;
+    min-width: 600px;
+    min-height: 400px;
+    overflow: auto;
+}
+
+/* NOTA: Modal específico para fotos, centrado en la pantalla con constrained image */
+#photoModal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+    width: 90%;
+    min-width: 300px;
+    height: auto;
+    resize: none;
+    background: #fed27a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #742d31;
+    color: #3c2526;
+    animation: fadeIn 0.3s ease-out;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+/* NOTA: Constrain fullSizePhoto image size */
+#photoModal .modal-content #fullSizePhoto {
+    max-width: 100%;
+    max-height: 80vh; /* Limit height to 80% of viewport */
+    object-fit: contain; /* Preserve aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center image */
+    border-radius: 4px; /* Slight rounding for aesthetics */
+}
+
+/* NOTA: Contenedor interno para el contenido del modal */
+.modal-content-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+}
+
+/* NOTA: Ajustes dentro del modal */
+.modal-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #742d31;
+}
+
+.modal-content .form-group {
+    margin-bottom: 1rem;
+}
+
+.modal-content .form-group label {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    color: #742d31;
+}
+
+.modal-content .form-group input, 
+.modal-content .form-group select {
+    font-size: 0.9rem;
+}
+
+/* NOTA: Inputs y selects más anchos para modales de edición */
+#editModal .form-group input,
+#editModal .form-group select,
+#editConductorModal .form-group input,
+#editConductorModal .form-group select {
+    width: 100%;
+}
+
+/* NOTA: Formulario de filtros */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#reportModal .filter-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 20px;
+    max-width: 800px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+
+#reportModal .filter-form .form-group {
+    width: 100%;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+#reportModal .filter-form .btn-container {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+#reportModal select, 
+#reportModal input[type="text"],
+#reportModal input[type="date"],
+#reportModal input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* NOTA: Mensajes con animación suave */
+.message {
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    text-align: center;
+    font-weight: 700;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+/* NOTA: Animación de mensajes */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.success {
+    background: #fed27a;
+    color: #742d31;
+}
+
+.error {
+    background: #742d31;
+    color: #ffffff;
+}
+
+/* NOTA: Sidebar profesional que abarca todo el lado izquierdo con animaciones impresionantes */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, rgba(116, 45, 49, 0.9) 0%, rgba(90, 31, 36, 0.9) 100%);
+    color: #fed27a;
+    position: fixed;
+    height: 100vh;
+    padding: 1.5rem;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 0 12px 12px 0;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+    z-index: 1000;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    animation: epicSidebarEntrance 0.8s ease-out forwards;
+}
+
+/* NOTA: Animación de entrada épica para el sidebar */
+@keyframes epicSidebarEntrance {
+    0% { transform: scale(0.8) translateX(-100%); opacity: 0; }
+    60% { transform: scale(1.05) translateX(10px); opacity: 0.8; }
+    100% { transform: scale(1) translateX(0); opacity: 1; }
+}
+
+/* NOTA: Logo en la parte superior del sidebar con animación vibrante */
+.sidebar-logo {
+    display: block;
+    width: 100%;
+    max-width: 140px;
+    margin: 0 auto 2rem;
+    transition: transform 0.4s ease;
+    animation: bounceInLogo 0.7s ease-out;
+}
+
+.sidebar-logo:hover {
+    transform: rotate(360deg);
+}
+
+/* NOTA: Animación de rebote para el logo */
+@keyframes bounceInLogo {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* NOTA: Enlaces del sidebar con diseño neumórfico y animaciones llamativas */
+.sidebar a {
+    display: block;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    text-align: center;
+    background: linear-gradient(145deg, #fed27a, #e8c56b);
+    color: #3c2526;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px rgba(116, 45, 49, 0.3), -4px -4px 8px rgba(254, 210, 122, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* NOTA: Efecto de hover con pulso y brillo */
+.sidebar a:hover {
+    transform: scale(1.08) translateY(-3px);
+    box-shadow: 0 6px 16px rgba(254, 210, 122, 0.6);
+    background: linear-gradient(145deg, #e8c56b, #fed27a);
+    animation: pulseGlow 1.5s infinite;
+}
+
+/* NOTA: Efecto activo con flip 3D */
+.sidebar a.active {
+    transform: rotateY(360deg);
+    box-shadow: inset 0 0 12px rgba(116, 45, 49, 0.5);
+    background: linear-gradient(145deg, #fed27a, #e8c56b);
+    transition: transform 0.6s ease;
+}
+
+/* NOTA: Animación de pulso para hover */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 8px rgba(254, 210, 122, 0.5); }
+    50% { box-shadow: 0 0 16px rgba(254, 210, 122, 0.8); }
+    100% { box-shadow: 0 0 8px rgba(254, 210, 122, 0.5); }
+}
+
+/* NOTA: Efecto de brillo dinámico en hover */
+.sidebar a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.4s ease;
+}
+
+.sidebar a:hover::after {
+    left: 100%;
+}
+
+/* NOTA: Botón hamburguesa con animación de transformación */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #742d31;
+    cursor: pointer;
+    padding: 0.6rem;
+    position: fixed;
+    top: 1.8rem;
+    left: 0.8rem;
+    z-index: 1100;
+    font-size: 1.8rem;
+    transition: transform 0.4s ease, color 0.3s ease;
+}
+
+.hamburger.open {
+    transform: rotate(180deg);
+    color: #fed27a;
+}
+
+.hamburger:hover {
+    transform: scale(1.2);
+    color: #fed27a;
+}
+
+/* NOTA: Media query para pantallas grandes (PC) */
+@media (min-width: 1024px) {
+    .content { 
+        margin-left: 280px;
+        padding: 1.5rem;
+        width: calc(100% - 280px);
+    }
+    .form-container { 
+        padding: 1.5rem; 
+        max-width: 500px;
+        background: #fed27a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #742d31;
+        animation: fadeIn 0.3s ease-out;
+    }
+    h1, h2, h3 { 
+        margin-bottom: 1.8rem; 
+    }
+    .form-group { 
+        margin-bottom: 1.2rem; 
+    }
+    .form-group label { 
+        margin-bottom: 0.4rem; 
+    }
+    .form-group input, .form-group select { 
+        padding: 0.6rem; 
+    }
+    .btn-save, button[type="submit"] { 
+        padding: 0.8rem; 
+    }
+    .message { 
+        padding: 0.8rem; 
+        margin-bottom: 1.2rem; 
+    }
+    .modal-content {
+        padding: 1.5rem;
+        max-width: 500px;
+        max-height: 90vh;
+    }
+    #reportModal .modal-content {
+        max-width: 90vw;
+        max-height: 90vh;
+        width: 90vw;
+        height: 90vh;
+        min-width: 600px;
+        min-height: 400px;
+    }
+}
+
+/* NOTA: Media query para pantallas medianas (laptops) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sidebar {
+        width: 260px;
+    }
+    .content {
+        margin-left: 260px;
+        width: calc(100% - 260px);
+        padding: 1rem;
+    }
+    body {
+        background-position: left 260px center;
+    }
+    .modal-content {
+        max-width: 450px;
+        max-height: 85vh;
+    }
+    #reportModal .modal-content {
+        max-width: 90vw;
+        max-height: 90vh;
+        width: 90vw;
+        height: 90vh;
+        min-width: 500px;
+        min-height: 350px;
+    }
+    .dropdown-menu {
+        min-width: 130px;
+    }
+    .form-container {
+        max-width: 400px;
+        background: #fed27a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #742d31;
+        animation: fadeIn 0.3s ease-out;
+    }
+}
+
+/* NOTA: Media query para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .sidebar {
+        width: 100%;
+        max-width: 320px;
+        height: 100vh;
+        padding: 1.5rem;
+        margin: 0;
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: linear-gradient(180deg, rgba(116, 45, 49, 0.9) 0%, rgba(90, 31, 36, 0.9) 100%);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 0;
+    }
+    .sidebar.open {
+        transform: translateX(0);
+        animation: mobileSidebarEntrance 0.6s ease-out;
+    }
+    .hamburger {
+        display: block;
+    }
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 0.8rem;
+        min-height: 100vh;
+    }
+    .modal-content {
+        max-width: 95%;
+        max-height: 80vh;
+        margin: 10% auto;
+        resize: none;
+    }
+    #reportModal .modal-content {
+        max-width: 95%;
+        max-height: 80vh;
+        width: 95%;
+        height: 80vh;
+        min-width: 300px;
+        min-height: 300px;
+        resize: none;
+    }
+    #editModal .modal-content, #editConductorModal .modal-content {
+        max-width: 95%;
+        max-height: 80vh;
+        width: 95%;
+        min-width: 280px;
+        height: auto;
+        min-height: 300px;
+        resize: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #photoModal .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 95%;
+        width: 95%;
+        min-width: 280px;
+        max-height: 85vh;
+        height: auto;
+        resize: none;
+        padding: 0.8rem;
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+    #photoModal .modal-content #fullSizePhoto {
+        max-width: 100%;
+        max-height: 70vh; /* Slightly smaller for mobile */
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+    .form-container {
+        max-width: 95%;
+        padding: 0.8rem;
+        background: #fed27a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #742d31;
+        animation: fadeIn 0.3s ease-out;
+    }
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .form-group {
+        flex: 1 1 100%;
+    }
+    body {
+        background-position: center center;
+    }
+}
+
+/* NOTA: Animación de entrada para el sidebar en móviles */
+@keyframes mobileSidebarEntrance {
+    0% { transform: translateX(-100%) scale(0.9); opacity: 0; }
+    70% { transform: translateX(10px) scale(1.05); opacity: 0.9; }
+    100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Contenedor de tabla con dimensiones ajustadas para ocupar el 90% */
+.table-container {
+    width: 90%;
+    height: calc(100vh - 100px);
+    max-height: 85vh;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilo para la tabla dentro del contenedor */
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Especificaciones para la tabla de reportes */
+#reportTable {
+    width: 100%;
+    table-layout: fixed;
+    color: #fed27a;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background: #1a1a1a;
+}
+
+/* Table headers for reportTable */
+#reportTable thead th {
+    background-color: #742d31;
+    color: #fed27a;
+    padding: 1.2rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Hover effect on headers */
+#reportTable thead th:hover {
+    background-color: #fed27a;
+    color: #742d31;
+}
+
+/* Table body cells */
+#reportTable tbody td {
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    color: #fed27a;
+}
+
+/* Row hover and alternating colors */
+#reportTable tbody tr {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background: #1a1a1a;
+}
+
+#reportTable tbody tr:hover {
+    background-color: rgba(254, 210, 122, 0.2);
+    transform: scale(1.01);
+}
+
+#reportTable tbody tr:nth-child(even) {
+    background-color: rgba(254, 210, 122, 0.05);
+}
+
+/* Sorting indicators */
+#reportTable thead th.sorted-asc::after {
+    content: " ↑";
+}
+
+#reportTable thead th.sorted-desc::after {
+    content: " ↓";
+}
+
+/* Disabled link style */
+#reportTable .disabled-link {
+    color: #999;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+/* Total registros */
+.total-registros {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #fed27a;
+    text-align: center;
+}
+
+/* Filter form search input styling */
+.filter-form .form-group input,
+.filter-form .form-group select {
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.filter-form .form-group input:focus,
+.filter-form .form-group select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #fed27a;
+}
+
+/* Contenedor de tabla en modal */
+#modalTableContainer {
+    width: 100%;
+    height: calc(100% - 150px);
+    overflow-y: auto;
+    overflow-x: auto;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Tabla de reportes en modal */
+#modalReportTable {
+    width: 100%;
+    table-layout: fixed;
+    font-size: 0.9rem;
+    font-family: 'Roboto', sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    color: #fed27a;
+    background: #1a1a1a;
+}
+
+/* Estilo para celdas de tablas de reportes en modal */
+#modalReportTable th, #modalReportTable td {
+    padding: 1.2rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    border: 1px solid #e0e0e0;
+}
+
+/* Table headers for modalReportTable */
+#modalReportTable thead th {
+    background-color: #742d31;
+    color: #fed27a;
+    padding: 1.2rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Hover effect on modal headers */
+#modalReportTable thead th:hover {
+    background-color: #fed27a;
+    color: #742d31;
+}
+
+/* Table body cells for modal */
+#modalReportTable tbody td {
+    padding: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    color: #fed27a;
+}
+
+/* Row hover and alternating colors for modal */
+#modalReportTable tbody tr {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background: #1a1a1a;
+}
+
+#modalReportTable tbody tr:hover {
+    background-color: rgba(254, 210, 122, 0.2);
+    transform: scale(1.01);
+}
+
+#modalReportTable tbody tr:nth-child(even) {
+    background-color: rgba(254, 210, 122, 0.05);
+}
+
+/* Sorting indicators for modal */
+#modalReportTable thead th.sorted-asc::after {
+    content: " ↑";
+}
+
+#modalReportTable thead th.sorted-desc::after {
+    content: " ↓";
+}
+
+/* Disabled link style for modal */
+#modalReportTable .disabled-link {
+    color: #999;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+/* Estilo para el indicador de carga */
+#loading {
+    font-size: 0.9rem;
+    color: #742d31;
+    font-weight: 700;
+}
+
+/* NOTA: Estilo para miniaturas de fotos */
+.thumbnail {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Contenedor de botones en el formulario de filtros */
+.btn-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Botones específicos con inline styles movidos a clases */
+.open-report-btn {
+    margin-bottom: 20px;
+}
+
+/* NOTA: Botón de cerrar con icono en forma de "X" en la esquina superior derecha */
+.modal-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #742d31;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1200;
+}
+
+/* NOTA: Icono de cerrar usando pseudo-elementos para un diseño más atractivo */
+.modal-close-btn::before,
+.modal-close-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    transform-origin: center;
+}
+
+.modal-close-btn::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-close-btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* NOTA: Hover del botón de cerrar con animación profesional */
+.modal-close-btn:hover {
+    background: #3c2526;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: pulseGlow 1.5s infinite;
+}
+
+/* NOTA: Media query para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .modal-close-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+    .modal-close-btn::before,
+    .modal-close-btn::after {
+        width: 16px;
+        height: 2px;
+    }
+    .table-container {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    #reportTable, #modalReportTable {
+        min-width: 100%;
+        font-size: 0.85rem;
+    }
+    #reportTable thead th, #modalReportTable thead th {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+    #reportTable tbody td, #modalReportTable tbody td {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+    .filter-form .form-group input,
+    .filter-form .form-group select {
+        max-width: 100%;
+    }
+}
+
+/* Custom column widths for #reportTable to adjust column sizes */
+#reportTable th, #reportTable td {
+    width: 8.33%; /* Default equal width for 12 columns */
+}
+
+/* Smaller columns: ID Viaje, ID Vehículo, ID Conductor, Litros, Pesos, Foto */
+#reportTable th:nth-child(1),
+#reportTable td:nth-child(1),
+#reportTable th:nth-child(2),
+#reportTable td:nth-child(2),
+#reportTable th:nth-child(3),
+#reportTable td:nth-child(3),
+#reportTable th:nth-child(10),
+#reportTable td:nth-child(10),
+#reportTable th:nth-child(11),
+#reportTable td:nth-child(11),
+#reportTable th:nth-child(12),
+#reportTable td:nth-child(12) {
+    width: 6%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Larger columns: Conductor, KM Inicial, KM Final, Diferencia, Destino, Fecha */
+#reportTable th:nth-child(4),
+#reportTable td:nth-child(4),
+#reportTable th:nth-child(5),
+#reportTable td:nth-child(5),
+#reportTable th:nth-child(6),
+#reportTable td:nth-child(6),
+#reportTable th:nth-child(7),
+#reportTable td:nth-child(7),
+#reportTable th:nth-child(8),
+#reportTable td:nth-child(8),
+#reportTable th:nth-child(9),
+#reportTable td:nth-child(9) {
+    width: 10%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Custom column widths for #modalReportTable */
+#modalReportTable th, #modalReportTable td {
+    width: 8.33%; /* Default equal width for 12 columns */
+}
+
+/* Smaller columns for modal: ID Viaje, ID Vehículo, ID Conductor, Litros, Pesos, Foto */
+#modalReportTable th:nth-child(1),
+#modalReportTable td:nth-child(1),
+#modalReportTable th:nth-child(2),
+#modalReportTable td:nth-child(2),
+#modalReportTable th:nth-child(3),
+#modalReportTable td:nth-child(3),
+#modalReportTable th:nth-child(10),
+#modalReportTable td:nth-child(10),
+#modalReportTable th:nth-child(11),
+#modalReportTable td:nth-child(11),
+#modalReportTable th:nth-child(12),
+#modalReportTable td:nth-child(12) {
+    width: 6%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Larger columns for modal: Conductor, KM Inicial, KM Final, Diferencia, Destino, Fecha */
+#modalReportTable th:nth-child(4),
+#modalReportTable td:nth-child(4),
+#modalReportTable th:nth-child(5),
+#modalReportTable td:nth-child(5),
+#modalReportTable th:nth-child(6),
+#modalReportTable td:nth-child(6),
+#modalReportTable th:nth-child(7),
+#modalReportTable td:nth-child(7),
+#modalReportTable th:nth-child(8),
+#modalReportTable td:nth-child(8),
+#modalReportTable th:nth-child(9),
+#modalReportTable td:nth-child(9) {
+    width: 10%;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Highlight classes for kilometer differences */
+.highlight-high {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+.highlight-medium {
+    background-color: rgba(255, 165, 0, 0.2);
+}
